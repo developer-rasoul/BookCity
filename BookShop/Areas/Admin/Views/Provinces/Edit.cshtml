@@ -1,0 +1,37 @@
+﻿@model BookShop.Models.Province
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header bg-light">
+                ویرایش استان <b>@Model.ProvinceName</b> 
+            </div>
+            <div class="card-body">
+                <form method="post" asp-action="Edit">
+                    <input type="hidden" asp-for="ProvinceID" />
+                    <div class="row m-5 form-group">
+                        <div class="row col-md-6">
+                                <label>نام استان</label>
+                            <div class="form-group col-md-8">
+                                <input typet="text" asp-for="@Model.ProvinceName" class="form-control" />
+                                <span asp-validation-for="@Model.ProvinceName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="submit" class="btn btn-success" value="ذخیره تغییرات" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <a asp-action="Index" class="text-danger   m-4"><i class="fa fa-arrow-alt-circle-right"> بازگشت </i></a>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

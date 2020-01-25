@@ -1,0 +1,103 @@
+﻿@model IEnumerable<BookShop.ViewModel.BookIndexViewModel>
+@inject ConvertDate Convert
+
+
+@{
+    ViewData["Title"] = "AdvanceSearch";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header bg-light">
+                نتیجه جستجو پیشرفته
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>ردیف</th>
+                                <th>عنوان</th>
+                                <th>شابک</th>
+                                <th>نویسنده</th>
+                                <th>ناشر</th>
+                                <th>مترجم</th>
+                                <th>دسته بندی</th>
+                                <th>قیمت (ریال)</th>
+                                <th>بخشی از کتاب</th>
+                                <th>تاریخ انتشار در سایت</th>
+                                <th class="text-center">وضعیت</th>
+                                <th>عملیات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.Any())
+                            {
+                                int i = 1;
+                                @foreach (var book in Model)
+                                {
+                            <tr>
+                                <td class="text-center">@i</td>
+                                <td class="text-nowrap">@book.Title</td>
+                                <td>@book.ISBN</td>
+                                <td>@book.AuthorName</td>
+                                <td>@book.PublisherName</td>
+                                <td>@book.TranslatorName</td>
+                                <td>@book.CategoryName</td>
+                                <td>@book.Price</td>
+                                @if (book.File == null)
+                                {
+                                    <td class="text-center">
+                                        <span class="badge badge-warning btn-block"> موجود نیست </span>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td class="text-center">
+                                        <a href="admin/books/download/@book.BookID" class="badge badge-primary btn-block"><i class="fa fa-download pl-2"></i> دانلود </a>
+                                    </td>
+                                }
+                                @if (@book.IsPublish)
+                                {
+                                    <td class="text-center">@Convert.ToShamsi((book.PublishDate.Value), "dddd d MMMM yyyy ساعت h:mm")</td>
+                                    <td class="text-center">
+                                        <label class="badge badge-success btn-block">منتشر شده</label>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td class="text-center">--</td>
+                                    <td class="text-center">
+                                        <label class="badge badge-info btn-block">منتشر نشده</label>
+                                    </td>
+                                }
+                                <td class="text-center">
+                                    <a asp-action="Details" asp-route-id="@book.BookID" class="btn btn-info btn-icon"><i class="fa fa-eye text-white"></i></a>
+                                    <a asp-action="Edit" asp-route-id="@book.BookID"    class="btn btn-success btn-icon"><i class="fa fa-edit text-white"></i></a>
+                                    <a asp-action="Delete" asp-route-id="@book.BookID"  class="btn btn-danger btn-icon"><i class="fa fa-trash text-white"></i></a>
+                                </td>
+                            </tr>
+                                    i++;
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="10">
+                                        <span class="btn btn-warning btn-block">کتابی برای نمایش وجود ندارد.</span>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <a href="~/admin/books/index"><i class="fa fa-arrow-alt-circle-right"></i> بازگشت </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

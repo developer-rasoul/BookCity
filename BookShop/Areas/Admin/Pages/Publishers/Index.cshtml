@@ -1,0 +1,71 @@
+﻿@page "{CurrentPage:int?}"
+@model IndexModel
+
+@{
+
+}
+<div class="card">
+    <div class="card-header bg-light">
+        لیست ناشرین
+    </div>
+    <div class="card-body">
+        <p>
+            <a asp-page="./Create" class="btn btn-success">ایجاد ناشر جدید</a>
+        </p>
+        <form method="post">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>نام ناشر</th>
+                        <th>عملیات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Publishers)
+                    {
+                        <tr>
+                            <td>@item.PublisherName</td>
+                            <td>
+                                <a asp-page="./Edit" asp-route-id="@item.PublisherID" class="btn btn-primary btn-icon">
+                                    <i class="fa fa-pencil-alt"></i>
+                                </a>
+                                <button type="submit" asp-page="./Index" asp-route-id="@item.PublisherID" asp-page-handler="Delete" class="btn btn-danger btn-icon">
+                                    <i class="fa fa-trash-alt"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </form>
+        <form>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    @if (Model.Previous)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" asp-page="./Index" asp-route-CurrentPage="@(Model.CurrentPage-1)"  aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                    }
+                    @for (int i = 1; i <= Model.TotalPages; i++)
+                    {
+                        <li class='page-item @(Model.CurrentPage == i ? "active" : "")'>
+                            <a class='page-link' asp-page="./Index" asp-route-CurrentPage="@i">@i</a>
+                        </li>
+                    }
+                    @if (Model.Next)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" asp-page="./Index" asp-route-CurrentPage="@(Model.CurrentPage+1)" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+
+        </form>
+    </div>
+</div>

@@ -1,0 +1,148 @@
+﻿@model BookShop.Models.Book
+@inject ConvertDate Convert
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header bg-light">
+            اطلاعات کتاب <b>@Model.Title</b>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                   <div class="card">
+                       <div class="card-header bg-light">
+                           تصویر کتاب
+                       </div>
+                       <div class="card-body">
+                           @if (Model.Image != null)
+                           {
+                               <img src="/admin/books/showimage/@Model.BookID" alt="@Model.Title" class="img-fluid" />
+                           }
+                           else
+                           {
+                               <img src="~/imgs/no-image.png" alt="@Model.Title" class="img-fluid" />
+                           }
+                       </div>
+                   </div>
+                </div>
+                <div class="col-md-4">
+                    <p>عنوان کتاب : @Model.Title</p>
+                    <p>شابک  : @Model.ISBN</p>
+                    <p>ناشر : @Model.Publisher.PublisherName</p>
+                    <p>موجودی  : @Model.Stock</p>
+                    <p>وزن  : @Model.Weight</p>
+                    <p>قیمت  : @Model.Price</p>
+                    <p>سال انتشار  : @Model.PublishYear</p>
+                    <p>تعداد صفحه  : @Model.NumOfPage</p>
+                </div>
+                <div class="col-md-4">
+                    @if (Model.IsPublish)
+                    {
+                        <p>وضعیت : <span class="badge badge-success"> منتشر شده</span></p>
+                        <p>تاریخ انتشار در سایت : @Convert.ToShamsi(Model.PublishDate.Value, "dddd d MMMM yyyy ساعت h:mm")</p>
+                    }
+                    else
+                    {
+                        <p>وضعیت : <span class="badge badge-info"> منتشر نشده</span></p>
+                        <p>تاریخ انتشار در سایت : -- </p>
+                    }
+                    @if (Model.File != null)
+                    {
+                        <p>
+                            قسمتی از کتاب : <a href="/admin/books/download/@Model.BookID" class="badge badge-success">
+                                <i class="fa fa-download pl-2"></i> دانلود
+                            </a>
+                        </p>
+                    }
+                    else
+                    {
+                        <p>قسمتی از کتاب : <span class="badge bg-warning"> فایلی بارگذاری نشده</span></p>
+                    }
+                    <p>زبان : @Model.Language.LanguageName</p>
+                    @if (ViewBag.Author != null)
+                    {
+                        string authors = "";
+                        foreach (var i in ViewBag.Author)
+                        {
+                            if (authors == "")
+                            {
+                                authors = i;
+                            }
+                            else
+                            {
+                                authors += " - " + i;
+                            }
+                        }
+                        <p>
+                            نویسندکان : @authors
+                        </p>
+                    }
+                    else
+                    {
+                        <p>نویسنده : -- </p>
+                    }
+                    @if (ViewBag.Category != null)
+                    {
+                        string categories = "";
+                        foreach (var i in ViewBag.Category)
+                        {
+                            if (categories == "")
+                            {
+                                categories = i;
+                            }
+                            else
+                            {
+                                categories += " - " + i;
+                            }
+                        }
+                        <p>
+                            دسته‌بندیها : @categories
+                        </p>
+                    }
+                    else
+                    {
+                        <p>دسته‌بندی : -- </p>
+                    }
+                    @if (ViewBag.Translator != null)
+                    {
+                        string translators = "";
+                        foreach (var i in ViewBag.Translator)
+                        {
+                            if (translators == "")
+                            {
+                                translators = i;
+                            }
+                            else
+                            {
+                                translators += " - " + i;
+                            }
+                        }
+                        <p>
+                            مترجمان : @translators
+                        </p>
+                    }
+                    else
+                    {
+                        <p>مترجم : -- </p>
+                    }
+                </div>
+                <div class="col-md-12">
+                    <br />
+                    <hr />
+                    <br />
+                    <p>
+                        خلاصه کتاب : <br />
+                        @Model.Summary
+                    </p>
+                </div>
+            </div><hr />
+            <div class="m-5">
+                <a href="~/admin/books/index"><i class="fa fa-arrow-alt-circle-right"></i> بازگشت </a>
+            </div>
+        </div>
+    </div>
+</div>

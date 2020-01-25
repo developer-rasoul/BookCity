@@ -1,0 +1,73 @@
+﻿@model IEnumerable<BookShop.Models.Province>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header bg-light">
+                لیست استان‌ها
+            </div>
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    @TempData["Success"]
+
+                </div>
+            }
+            @if (TempData["Error"] != null)
+            {
+                <div class="alert alert-warning alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true" class="lead">&times;</span>
+                    </button>
+                    @TempData["Error"]
+                </div>
+            }
+            <div class="card-body">
+                <form method="post">
+                    <p class="col-md-4 ">
+                        <a asp-action="Create" class="btn btn-primary btn-rounded btn-block">
+                            <i class="fa mx-2 fa-user-plus"></i>افزودن استان جدید
+                        </a>
+                    </p>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>نام استان</th>
+                                <th>مشاهده شهرها</th>
+                                <th>عملیات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.ProvinceName</td>
+                                    <td>
+                                        <a asp-action="showcities" asp-route-id="@item.ProvinceID" class="btn btn-success">
+                                            شهرهای استان
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a asp-action="Edit" asp-route-id="@item.ProvinceID" class="btn btn-info btn-icon btn-rounded">
+                                            ویرایش
+                                        </a>
+                                        <a asp-route-id="@item.ProvinceID" asp-action="Delete" class="btn btn-danger btn-icon btn-rounded">
+                                            حذف
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

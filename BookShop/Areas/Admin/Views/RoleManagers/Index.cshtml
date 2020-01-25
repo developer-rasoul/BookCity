@@ -1,0 +1,63 @@
+﻿@model ReflectionIT.Mvc.Paging.PagingList<BookShop.ViewModel.RolesViewModel>
+@using ReflectionIT.Mvc.Paging
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header bg-light">
+                لیست نقش‌ها
+            </div>
+
+            <div class="card-body">
+                @if (TempData["Success"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible">
+                        @TempData["Success"]
+                        <button class="close" data-dismiss="alert" aria-label="close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                }
+                <form method="post">
+                    <p class="col-md-4 ">
+                        <a asp-action="AddRole" class="btn btn-primary">
+                            <i class="fa mx-2 fa-plus-square"></i>افزودن نقش جدید
+                        </a>
+                    </p>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>@Html.SortableHeaderFor(a => a.RoleName)</th>
+                                <th>توضیحات</th>
+                                <th>کاربران</th>
+                                <th>عملیات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>@item.RoleName</td>
+                                <td>@item.Description</td>
+                                <td><span class="badge badge-info ">@item.UserCount</span> </td>
+                                <td>
+                                    <a asp-action="EditRole" asp-route-id="@item.RoleID" class="btn btn-info btn-icon">
+                                        <i class="fa fa-pencil-alt"></i>
+                                    </a>
+                                    <a asp-route-id="@item.RoleID" asp-action="DeleteRole" class="btn btn-danger btn-icon">
+                                        <i class="fa fa-trash-alt"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

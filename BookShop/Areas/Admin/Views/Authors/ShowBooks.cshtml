@@ -1,0 +1,44 @@
+﻿@model  BookShop.Models.Author
+
+    @{
+        ViewData["Title"] = "Index";
+        Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    }
+
+
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header bg-light">
+                کتاب‌های <b>@Model.FirstName @Model.LastName</b>
+            </div>
+            <div class="card-body">
+
+                <table class="table table-striped">
+                    <thead class="bg-light">
+                        <tr>
+                            <th>ردیف</th>
+                            <th>عنوان کتاب</th>
+                            <th>شابک</th>
+                            <th>ناشر</th>
+                            <th>زبان</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ byte i = 1;}
+                        @foreach (var item in Model.Author_Books)
+                        {
+                        <tr>
+                            <td>@i</td>
+                            <td>@item.Book.Title</td>
+                            <td>@item.Book.ISBN</td>
+                            <td>@item.Book.Publisher.PublisherName</td>
+                            <td>@item.Book.Language.LanguageName</td>
+                        </tr>
+                            i++;
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>

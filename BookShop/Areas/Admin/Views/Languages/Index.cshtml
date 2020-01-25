@@ -1,0 +1,36 @@
+﻿@model IEnumerable<BookShop.Models.Language>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LanguageName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LanguageName)
+            </td>
+            <td class="text-center">
+                <a asp-action="Details" asp-route-id="@item.LanguageID" class="btn btn-info btn-icon"><i class="fa fa-eye text-white"></i></a>
+                <a asp-action="Edit" asp-route-id="@item.LanguageID" class="btn btn-success btn-icon"><i class="fa fa-edit text-white"></i></a>
+                <a asp-action="Delete" asp-route-id="@item.LanguageID" class="btn btn-danger btn-icon"><i class="fa fa-trash text-white"></i></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

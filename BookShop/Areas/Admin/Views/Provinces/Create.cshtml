@@ -1,0 +1,38 @@
+﻿@model BookShop.Models.Province
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header bg-light">
+                ایجاد استان جدید
+            </div>
+            <div class="card-body">
+                <form asp-action="Create" method="post">
+                    <div class="row m-5 form-group">
+                        <div class="row col-md-9">
+                            <div class="">
+                                <label>نام استان</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input typet="text" asp-for="@Model.ProvinceName" class="form-control" />
+                                <span asp-validation-for="@Model.ProvinceName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="submit" class="btn btn-success" value="ایجاد استان" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <a asp-action="Index" class="text-danger   m-4"><i class="fa fa-arrow-alt-circle-right"> بازگشت </i></a>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,154 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    border:0;
+    list-style:none;
+}
+#header {
+    background-image: url(../imgs/book/carosel/bookHD.jpg);
+    background-size: cover;
+}
+#header > div{
+    background-color: rgba(0,0,0,0.7);
+}
+#TopLastBookPublished{
+    color:gray;
+    font-size:2rem;
+    border-bottom:5px dotted gray;
+    padding-bottom:2rem;
+}
+#main {
+    background-color: #f7f7f7;
+}
+.courses h2{
+    font-size:24px;
+    border-bottom:3px dotted #bbb;
+    padding:4px 30px;
+    color:#555;
+}
+.post {
+    background-color: white;
+    text-align:center;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+}
+    .post p {
+        color: white;
+        background-color: rgba(0, 0, 0, 0.6);
+        font-size: 16px;
+        text-align: justify;
+        position: absolute;
+        top: -800px;
+        padding: 10px;
+        height: 800px;
+        transition: 0.8s;
+    }
+
+.post:hover p{
+    top: 0;
+}
+.post:hover{
+    box-shadow:0 0 5px -1px;
+}
+.post a{
+    text-decoration:none;
+}
+.post img{
+    display:block;
+}
+
+#footer{
+    background-color:#002;
+    border-top:4px solid orange;
+    color:white;
+}
+/*#sitemap{
+    margin:10px 120px;
+    width:250px;
+}*/
+#sitemap h3 {
+    border-bottom: 2px solid white;
+    padding: 0.5rem;
+}
+#sitemap a{
+    color:#bbb;
+    text-decoration:none;
+    padding:2px 10px;
+    font-size:16px;
+    display:block;
+    border-bottom:1px dotted #777;
+    width:150px;
+}
+#sitemap a:hover{
+    color:white;
+    border-bottom:1px solid white;
+}
+/*#newsletter{
+    margin:10px 120px;
+    width:250px;
+}*/
+#newsletter h3 {
+    border-bottom: 2px solid white;
+    padding: 0.5rem;
+}
+#newsletter form{
+    text-align:center;
+}
+#newsletter label{
+    display:inline-block;
+    margin-bottom:3px;
+    margin-top:6px;
+    color:#bbb;
+}
+#newsletter input[type="email"]{
+    width:230px;
+    padding:4px;
+    margin-bottom:10px;
+    border-radius:4px;
+    border-bottom:2px solid #ccc;
+}
+#newsletter input[type="submit"]{
+    width:100px;
+    padding:2px;
+    border-radius:3px;
+    border:1px solid #999;
+    color:#bbb;
+    cursor:pointer;
+    background-image:linear-gradient(#113 , #446);
+}
+#newsletter input[type="submit"]:hover{
+    background-image:linear-gradient(#224 , #557);
+    color:white;
+}
+#copyright{
+    padding:8px;
+    font-size:18px;
+    text-align:center;
+    color:#bbb;
+    background-color:black;
+    border-top:2px solid green;
+}
+#copyright b{
+    color:white;
+}
+
+/*--------------------------------------------------------------------*/
+
+nav li:hover {
+    background-color: darkblue;
+}
+nav a:hover {
+    background-color: darkblue;
+}
+
+.bg-green {
+    background-color: green;
+}
+.bg-cyan {
+    background-color: cyan;
+}
+.bg-darkcyan {
+    background-color: darkcyan;
+}

@@ -1,0 +1,33 @@
+﻿@page
+@model BookShop.Areas.Admin.Pages.Publishers.EditModel
+@{
+}
+
+
+    <div class="card">
+        <div class="card-header bg-light">
+            ویرایش ناشر
+        </div>
+        <div class="card-body">
+            <form method="post">
+                <div class="col-md-12 row">
+                    <input type="hidden" asp-for="Publisher.PublisherID" />
+                    <div class="form-group col-md-6 row">
+                        <div class="col-md-3 pl-0">
+                            <label>
+                                نام ناشر
+                            </label>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" asp-for="Publisher.PublisherName" />
+                            <span asp-validation-for="Publisher.PublisherName" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="submit" class="btn btn-primary float-md-none float-left" value="ذخیره تغییرات" />
+                    </div>
+                </div>
+            </form>
+        </div>
+        <a asp-page="./Index" class="m-4"><i class="fa fa-arrow-alt-circle-right"> بازگشت </i></a>
+    </div>

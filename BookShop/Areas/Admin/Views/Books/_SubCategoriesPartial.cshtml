@@ -1,0 +1,26 @@
+﻿@model IEnumerable<BookShop.ViewModel.BooksTreeCategoryViewModel>
+@{ int[] CategoryID = ViewData["CatID"] as int[];}
+<ul>
+    @foreach (var cat in Model)
+    {
+    <li>
+        @if (CategoryID!= null)
+        {
+            @if (CategoryID.Contains(cat.id))
+            {
+                <input type="checkbox" name="CategoryID" checked value="@cat.id" /> @cat.title
+            }
+            else
+            {
+                <input type="checkbox" name="CategoryID" value="@cat.id" /> @cat.title
+            }
+        }
+        else
+        {
+            <input type="checkbox" name="CategoryID" value="@cat.id" /> @cat.title
+        }
+        @(await Html.PartialAsync("_SubCategoriesPartial", cat.subs))
+
+    </li>
+    }
+</ul>

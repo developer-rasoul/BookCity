@@ -1,0 +1,45 @@
+﻿@model BookShop.Models.City
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header bg-light">
+                ایجاد شهر جدید
+            </div>
+            <div class="card-body">
+                <form asp-action="Edit" method="post">
+                    <input type="hidden" asp-for="CityID" />
+                    <div class="form-group row m-5">
+                        <div class="col-md-8 row">
+                            <label asp-for="@Model.CityName"></label>
+                            <div class="form-group col-md-4">
+                                <input typet="text" asp-for="@Model.CityName" class="form-control" />
+                                <span asp-validation-for="@Model.CityName" class="text-danger"></span>
+                            </div>
+
+                            <label asp-for="@Model.provinceID"></label>
+                            <div class="form-group col-4">
+                                <select asp-for="@Model.provinceID" asp-items="ViewBag.Provinces" class="select2">
+                                    <option value=""></option>
+                                </select>
+                                <span asp-validation-for="@Model.provinceID" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <input type="submit" class="btn btn-success" value="ایجاد شهر" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <a asp-action="Index" class="text-danger   m-4"><i class="fa fa-arrow-alt-circle-right"> بازگشت </i></a>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<BookShop.Models.Author>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>کتاب‌ها</th>
+            <th>عملیات</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                <a asp-action="showbooks" asp-route-id="@item.AuthorID" class="btn btn-primary">مشاهده کتاب‌ ها</a>
+            </td>
+            <td class="text-center">
+                <a asp-action="Details" asp-route-id="@item.AuthorID" class="btn btn-info btn-icon"><i class="fa fa-eye text-white"></i></a>
+                <a asp-action="Edit" asp-route-id="@item.AuthorID" class="btn btn-success btn-icon"><i class="fa fa-edit text-white"></i></a>
+                <a asp-action="Delete" asp-route-id="@item.AuthorID" class="btn btn-danger btn-icon"><i class="fa fa-trash text-white"></i></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
