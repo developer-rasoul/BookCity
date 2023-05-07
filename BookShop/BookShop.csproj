@@ -22,7 +22,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.4" />
     <PackageReference Include="ReflectionIT.Mvc.Paging" Version="3.4.0" />
-    <PackageReference Include="system.drawing.common" Version="4.7.0" />
+    <PackageReference Include="system.drawing.common" Version="4.7.2" />
   </ItemGroup>
 
   <ItemGroup>
